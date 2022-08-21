@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;springsecuritypoc_v02&apos;" deleteContents="false" description="Delete resource &apos;springsecuritypoc_v02&apos;" element1="/springsecuritypoc_v02" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1660747787012"/>&#x0A;<refactoring comment="Delete resource &apos;employeeplus_v07&apos;" deleteContents="false" description="Delete resource &apos;employeeplus_v07&apos;" element1="/employeeplus_v07" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1660866324525"/>
-</session>

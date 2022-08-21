@@ -1,0 +1,5 @@
+package com.jonfriend.springsecurityapi_v06.controllers;
+
+public class AuthCtl {
+
+}

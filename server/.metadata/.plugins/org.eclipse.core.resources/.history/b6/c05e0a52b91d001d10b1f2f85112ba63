@@ -1,0 +1,27 @@
+package com.jonfriend.springsecuritypoc_v01.services;
+
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.jonfriend.springsecuritypoc_v01.models.RoleMdl;
+import com.jonfriend.springsecuritypoc_v01.models.UserMdl;
+import com.jonfriend.springsecuritypoc_v01.repositories.UserRpo;
+
+
+@Service
+public class UserDetailsServiceImplementation implements UserDetailsService {
+
+	
+	private UserRpo userRpo;
+    
+    public UserDetailsServiceImplementation(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
+    
+    
+}

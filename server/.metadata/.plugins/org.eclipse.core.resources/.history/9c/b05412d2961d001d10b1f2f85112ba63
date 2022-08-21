@@ -1,0 +1,5 @@
+package com.jonfriend.springsecuritypoc_v01.repositories;
+
+public interface RoleRpo {
+
+}

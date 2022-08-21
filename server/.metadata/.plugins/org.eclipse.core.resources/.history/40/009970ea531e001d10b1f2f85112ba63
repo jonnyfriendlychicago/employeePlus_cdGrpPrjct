@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>springsecuritypoc_v03 - Admin Page</title>
+</head>
+<body>
+	<%--     <h1>Welcome to the Admin Page <c:out value="${currentUser.username}"></c:out></h1> --%>
+	<h1>
+		Welcome to the Admin Page
+		<c:out value="${currentUser.firstName}"></c:out>
+	</h1>
+
+	<form id="logoutForm" method="POST" action="/logout">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" /> <input type="submit" value="Logout" />
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${userList}" var="record" >
+				<c:if test="${!record.roles.get(0).name.contains('ROLE_SUPER_ADMIN')}">
+					<tr>
+						<td>${record.firstName} ${record.lastName}</td>
+						<td>${record.email}</td>
+						
+						<c:if
+							test="${currentUser.roles.get(0).name.contains('ROLE_SUPER_ADMIN')}">
+							<td><a href="/delete/${record.id}">Delete</a> <a
+								href="/admin/${record.id}">Make Admin</a></td>
+						</c:if>
+						<c:if
+							test="${currentUser.roles.get(0).name.contains('ROLE_ADMIN')}">
+							<c:if test="${record.roles.get(0).name.contains('ROLE_USER')}">
+								<td><a href="/delete/${record.id}">Delete</a> <a
+									href="/admin/${record.id}">Make Admin</a></td>
+							</c:if>
+							<c:if test="${record.roles.get(0).name.contains('ROLE_ADMIN')}">
+								<td>Admin</td>
+							</c:if>
+						</c:if>
+					</tr>
+				</c:if>
+			</c:forEach>
+		</tbody>
+	</table>
+</body>
+</html>

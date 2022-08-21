@@ -1,0 +1,16 @@
+1660599625989	Rename package 'com.jonfriend.java01goldensitecontent.models'
+1660599646826	Delete elements
+1660676672065	Rename package 'com.jonfriend.java01goldensitecontent.repositories'
+1660676699852	Delete elements
+1660677257046	Rename package 'config'
+1660677406173	Rename package 'com.jonfriend.springsecuritypoc_v001.config'
+1660677483886	Delete element
+1660677501716	Delete element
+1660677539807	Delete element
+1660677580228	Rename package 'com.jonfriend.java01goldensitecontent.controllers'
+1660677591313	Delete element
+1660677599210	Delete elements
+1660689307359	Rename package 'com.jonfriend.java01goldensitecontent.services'
+1660689321995	Delete elements
+1660696522682	Copy package
+1660696550168	Rename type 'WebSecurityConfig'

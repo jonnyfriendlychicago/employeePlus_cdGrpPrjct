@@ -1,0 +1,60 @@
+package com.jonfriend.springsecuritypoc_v01.services;
+
+//import java.util.List;
+//import java.util.Optional;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.jonfriend.springsecuritypoc_v01.models.UserMdl;
+import com.jonfriend.springsecuritypoc_v01.repositories.RoleRpo;
+import com.jonfriend.springsecuritypoc_v01.repositories.UserRpo;
+
+//import org.mindrot.jbcrypt.BCrypt;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.validation.BindingResult;
+
+//import com.jonfriend.springsecuritypoc_v01.models.LoginUserMdl;
+
+@Service
+public class UserSrv{
+    
+//    @Autowired
+    private UserRpo userRpo;
+    private RoleRpo roleRpo; 
+    private BCryptPasswordEncoder bCryptPasswordEncoder;  
+
+    public UserSrv (
+    		UserRpo userRpo
+    		, RoleRpo roleRpo
+    		, BCryptPasswordEncoder bCryptPasswordEncoder
+    		)
+    {
+        this.userRpo = userRpo;
+        this.roleRpo = roleRpo;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+    
+    // 1
+    public void saveWithUserRole(UserMdl userMdl) {
+    	userMdl.setPassword(bCryptPasswordEncoder.encode(userMdl.getPassword()));
+    	userMdl.setRoleMdl(roleRpo.findByName("ROLE_USER"));
+        userRpo.save(userMdl);
+    }
+     
+     // 2 
+    public void saveUserWithAdminRole(UserMdl userMdl) {
+    	userMdl.setPassword(bCryptPasswordEncoder.encode(userMdl.getPassword()));
+    	userMdl.setRoleMdl(roleRpo.findByName("ROLE_ADMIN"));
+        userRpo.save(userMdl);
+    }    
+    
+    // 3
+    public UserMdl findByUsername(String username) {
+        return userRpo.findByUsername(username);
+    }
+
+// end of service
+}
+    
+    	

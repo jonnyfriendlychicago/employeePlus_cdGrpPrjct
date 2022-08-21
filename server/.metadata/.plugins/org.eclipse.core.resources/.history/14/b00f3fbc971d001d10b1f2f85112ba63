@@ -1,0 +1,5 @@
+package com.jonfriend.springsecuritypoc_v001.config;
+
+public class WebSecurityConfig {
+
+}

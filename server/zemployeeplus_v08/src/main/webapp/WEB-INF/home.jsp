@@ -84,5 +84,6 @@
  
  	<jsp:include page="/WEB-INF/include/footerbuffer.jsp"/>
  	<jsp:include page="/WEB-INF/include/footer.jsp"/>
+ 	<!-- JonFriendEdit aug21:520pm -->
 </body>
 </html>

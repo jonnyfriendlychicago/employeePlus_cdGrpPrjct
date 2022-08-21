@@ -1,5 +1,14 @@
 package com.jonfriend.zemployeeplus_v08.controllers;
 
+import com.jonfriend.zemployeeplus_v08.models.WorkerMdl;
+import com.jonfriend.zemployeeplus_v08.services.DivisionSrv;
+import com.jonfriend.zemployeeplus_v08.services.UserSrv;
+import com.jonfriend.zemployeeplus_v08.services.WorkerSrv;
+import java.security.Principal;
+import java.util.List;
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,26 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.jonfriend.zemployeeplus_v08.models.DivisionMdl;
-import com.jonfriend.zemployeeplus_v08.models.UserMdl;
-//import com.jonfriend.playdatenow_v03.models.UserMdl;
-//import com.jonfriend.zemployeeplus_v08.models.UserMdl;
-import com.jonfriend.zemployeeplus_v08.models.WorkerMdl;
-import com.jonfriend.zemployeeplus_v08.services.DivisionSrv;
-import com.jonfriend.zemployeeplus_v08.services.UserSrv;
-import com.jonfriend.zemployeeplus_v08.services.WorkerSrv;
-
-import java.security.Principal;
-import java.util.List;
-
-//import java.security.Principal;
-//import java.util.List;
-
-import javax.validation.Valid;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

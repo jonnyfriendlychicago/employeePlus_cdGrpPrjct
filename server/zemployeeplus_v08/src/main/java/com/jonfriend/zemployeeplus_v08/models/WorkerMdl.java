@@ -63,6 +63,7 @@ public class WorkerMdl {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="createdby_id")
 	@JsonIgnore
+//	@Column(updatable=false) // adding this, trying to keep the createdby_id constant 
 	private UserMdl userMdl;  
     
 	// join division

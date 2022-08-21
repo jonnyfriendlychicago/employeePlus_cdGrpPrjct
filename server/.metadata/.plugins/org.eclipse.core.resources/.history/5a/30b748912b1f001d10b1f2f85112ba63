@@ -1,5 +1,0 @@
-package com.jonfriend.springsecurityapi_v06.payload;
-
-public class ErrorsResponse {
-
-}

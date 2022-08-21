@@ -1,5 +1,0 @@
-package com.jonfriend.springsecuritypoc_v01.services;
-
-public class UserDetailsServiceImplementation {
-
-}

@@ -1,107 +1,101 @@
-import React, { useState, useContext } from 'react';
-import topicService from '../../services/TopicService';
-import { AppContext } from '../../store/AppContext';
+import React, { useState} from 'react';
+// useContext 
+import workerService from '../../services/WorkerService';
+// import { AppContext } from '../../store/AppContext';
 import { useNavigate } from "react-router-dom";
 
 const NewWorker = ( props ) => {
 
     
     const navigate = useNavigate();
-
-    const { topics, setTopics } = useContext(AppContext);
+    
+    // const { workers, setWorkers } = useContext(AppContext);
 
     const [ worker, setWorker ] = useState({
         firstName: '',
         lastName: '',
         hireDate: '',
-
+        jobTitle: '',
+        workerDescription: '',
+        employmentType: '',
+        workerDivisionId: '',
     });
 
-    const [ saving, setSaving ] = useState(false);
+    // const [ saving, setSaving ] = useState(false);
 
-    const canSave = worker.firstName !== ""
+    // const canSave = worker.firstName !== ""
 
-    const saveTopic = () => {
-        setSaving(true);
-
-        topicService.create(worker)
-            .then( resp => {
-                setTopics([resp, ...topics]);
+    const newWorkers = () => {
+        
+        //i would change this to worker service
+        workerService.newWorkers(worker)
+            .then( resp => { console.log(resp)
+                navigate("/WorkerList" )
             })
             .catch( err => console.log(err) )
-            .finally( resp => {
-            navigate('/WorkerList')
-                
-            })
+            
     }
 
     return (
-        <fieldset className='row' disabled={saving}>
+        <form onSubmit={newWorkers}>
             <div className='col-12 col-md-6 mb-2'>
                 <h5>First Name: </h5>
                 
-                <input
-                    className='form-control'
-                    value={worker.firstName}
-                    onChange={(e) => setWorker({...worker, firstName: e.target.value})}
+                <input className='form-control' value={worker.firstName}
+                onChange={(e) => setWorker({...worker, firstName: e.target.value})}
                 />
             </div>
             <div className='col-12 col-md-6 mb-2'>
-                <h5>Players:</h5>
-                <input
-                    className='form-control'
-                    value={worker.lastName}
+                <h5>last name:</h5>
+                <input className='form-control' value={worker.lastName}
                     onChange={(e) => setWorker({...worker, lastName: e.target.value})}
                 />
             </div>
             <div className='col-12 col-md-6 mb-2'>
                 <h5>Hire date:</h5>
-                <textarea
-                    className='form-control'
-                    value={worker.hireDate}
+                <input
+                    className='form-control' value={worker.hireDate}
                     onChange={(e) => setWorker({...worker, hireDate: e.target.value})}
                 />
             </div>
             <div className='col-12 col-md-6 mb-2'>
-                <h5>Plot:</h5>
-                <textarea
-                    className='form-control'
-                    value={topic.plot}
-                    onChange={(e) => setTopic({...topic, plot: e.target.value})}
+                <h5>Job Title:</h5>
+                <input
+                    className='form-control' value={worker.jobTitle}
+                    onChange={(e) => setWorker({...worker, jobTitle: e.target.value})}
                 />
             </div>
-            {/* <div className='col-12 col-md-6 mb-2'>
-                <h5>Conflict:</h5>
+
+            <div className='col-12 col-md-6 mb-2'>
+                <h5>worker Descriptions:</h5>
                 <textarea
-                    className='form-control'
-                    value={topic.conflict}
-                    onChange={(e) => setTopic({...topic, conflict: e.target.value})}
+                    className='form-control' value={worker.workerDescription}
+                    onChange={(e) => setWorker({...worker, workerDescription: e.target.value})}
                 />
             </div>
             <div className='col-12 col-md-6 mb-2'>
-                <h5>Theme:</h5>
-                <textarea
-                    className='form-control'
-                    value={topic.theme}
-                    onChange={(e) => setTopic({...topic, theme: e.target.value})}
+                <h5>Employee (Fulltime, Part-time, Contract)</h5>
+                <input
+                    className='form-control' value={worker.employmentType}
+                    onChange={(e) => setWorker({...worker, employmentType: e.target.value})}
                 />
             </div>
-            <div className='col-12 col-md-6'>
-                <h5>Narrative Arc:</h5>
-                <textarea
-                    className='form-control'
-                    value={topic.narrative_arc}
-                    onChange={(e) => setTopic({...topic, narrative_arc: e.target.value})}
-                />
-            </div> */}
-            <div className='col-12 text-center mt-2'>
-                <button
-                    className='btn btn-success'
-                    disabled={ !canSave }
-                    onClick={saveTopic}
-                    >Save</button>
+            <div className='col-12 col-md-6 mb-2'>
+                <label>Division :</label><br/>
+                <select name="workerDivisionId" value={worker.workerDivisionId} onChange={(e) => setWorker(e.target.value)} >
+                            <option>Select below</option>
+                            <option value="1">Sales</option>
+                            <option value="2">Human Resources</option>
+                            <option value="3">Administration</option>
+                            <option value="4">Operations</option>
+                            <option value="5">Executive Management</option>
+                        </select>
             </div>
-        </fieldset>
+
+            <div type="submit" className='col-12 text-center mt-2'>
+            <input type="button" value="sign up" onClick={ (e) => newWorkers(e)} />
+            </div>
+        </form>
     )
 }
 

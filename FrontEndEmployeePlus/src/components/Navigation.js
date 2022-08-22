@@ -34,7 +34,7 @@ const Navigation = ( props ) => {
                         <li class="nav-item">
                             <Link 
                                 className="nav-link" 
-                                to="/my-topics"
+                                to="/Employee/new"
                                 > Workers</Link>
                         </li>
                         <li class="nav-item">

@@ -9,6 +9,8 @@ const axiosInstance = axios.create({
         'accept': 'application/json',
         'withCredentials': true
     }
+
+    
 });
 
 axiosInstance.interceptors.response.use(                                                                  
@@ -34,5 +36,6 @@ axiosInstance.interceptors.request.use(
           return Promise.reject(error);
       }
   );
+
 
 export default axiosInstance;

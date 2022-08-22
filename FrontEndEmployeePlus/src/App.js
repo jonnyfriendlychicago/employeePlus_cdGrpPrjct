@@ -6,10 +6,12 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Navigation from './components/Navigation';
 import Home from './components/Home';
-import MyTopic from './components/Employee/MyTopic';
-import Topic from './components/Employee/Topic';
-import NewTopic from './components/Employee/NewTopic';
-// import NewWorker from './components/Employee/NewWorker';
+// import MyTopic from './components/Employee/MyTopic';
+// import Topic from './components/Employee/Topic';
+
+import NewWorker from './components/Employee/NewWorker';
+import WorkerList from './components/Employee/WorkerList';
+// import Worker from './components/Employee/Worker';
 
 function App() {
 
@@ -39,13 +41,13 @@ function App() {
                 {/* <Route path="/register" element={<Registration />}/>
                 <Route path="/login" element={<Login />}/> */}
                 <Route path="/" element={<Home />}/>
-                <Route path="/my-topics" element={<MyTopic />}/>
                 <Route path="/logout" element={<Logout />}/>
                 {/*  new worker  */}
-                {/* <Route path="/Employee/new" element={<NewWorker />}/> */}
-                <Route path="/topic/new" element={<NewTopic />}/>
+                <Route path="/Employee/new" element={<NewWorker />}/>
                 {/* worker by id */}
-                <Route path="/topic/:id" element={<Topic />}/>
+                {/* <Route path="/worker/:id" element={<Worker />}/> */}
+                <Route path="/WorkerList" element={<WorkerList/>}/>
+                
               
               
             </>

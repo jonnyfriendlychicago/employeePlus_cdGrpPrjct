@@ -7,19 +7,21 @@ class WorkerService extends TABService {
 
     model = 'worker';
 
-    newWorkers = (firstName, lastName, hireDate, jobTitle, workerDescription, employmentType, workerDivisionId) => 
-    new Promise((resolve, reject) => {
+    newWorkers = (worker) => 
         this._post(
             `${this.model}/add`,
             {
-                firstName,lastName,
-                hireDate,jobTitle,workerDescription,employmentType,
-                workerDivisionId
+                firstName: worker.firstName,
+                lastName: worker.lastName,
+                hireDate: worker.hireDate,
+                jobTitle: worker.jobTitle,
+                workerDescription: worker.workerDescription,
+                employmentType: worker.employmentType,
+                workerDivisionId: worker.workerDivisionId,
             }
         )
-        .then( resp => resolve(resp))
-        .catch( err => reject(err))
-    })
+
+    
 
     getMyWorkers = () => 
     this._get(

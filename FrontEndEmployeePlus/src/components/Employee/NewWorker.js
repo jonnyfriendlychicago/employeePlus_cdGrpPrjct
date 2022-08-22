@@ -1,16 +1,13 @@
-import React, { useState} from 'react';
-// useContext 
+import React, { useState, useContext} from 'react';
 import workerService from '../../services/WorkerService';
-// import { AppContext } from '../../store/AppContext';
+import { AppContext } from '../../store/AppContext';
 import { useNavigate } from "react-router-dom";
 
 const NewWorker = ( props ) => {
 
-    
+    const { setUser } = useContext(AppContext);
     const navigate = useNavigate();
     
-    // const { workers, setWorkers } = useContext(AppContext);
-
     const [ worker, setWorker ] = useState({
         firstName: '',
         lastName: '',
@@ -21,15 +18,13 @@ const NewWorker = ( props ) => {
         workerDivisionId: '',
     });
 
-    // const [ saving, setSaving ] = useState(false);
 
-    // const canSave = worker.firstName !== ""
 
     const newWorkers = () => {
-        
-        //i would change this to worker service
+        console.log(worker);
         workerService.newWorkers(worker)
             .then( resp => { console.log(resp)
+                setUser(resp.user);
                 navigate("/WorkerList" )
             })
             .catch( err => console.log(err) )
@@ -82,16 +77,15 @@ const NewWorker = ( props ) => {
             </div>
             <div className='col-12 col-md-6 mb-2'>
                 <label>Division :</label><br/>
-                <select name="workerDivisionId" value={worker.workerDivisionId} onChange={(e) => setWorker(e.target.value)} >
+                <select   name="workerDivisionId" value={worker.workerDivisionId} onChange={(e) =>  setWorker({...worker, workerDivisionId: e.target.value}) } >
                             <option>Select below</option>
-                            <option value="1">Sales</option>
+                            <option value= "1">Sales</option>
                             <option value="2">Human Resources</option>
                             <option value="3">Administration</option>
                             <option value="4">Operations</option>
                             <option value="5">Executive Management</option>
                         </select>
             </div>
-
             <div type="submit" className='col-12 text-center mt-2'>
             <input type="button" value="sign up" onClick={ (e) => newWorkers(e)} />
             </div>
@@ -100,3 +94,9 @@ const NewWorker = ( props ) => {
 }
 
 export default NewWorker;
+
+
+
+
+
+

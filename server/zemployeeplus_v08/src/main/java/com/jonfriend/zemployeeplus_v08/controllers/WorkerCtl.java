@@ -1,5 +1,6 @@
 package com.jonfriend.zemployeeplus_v08.controllers;
 
+import com.jonfriend.zemployeeplus_v08.models.UserMdl;
 import com.jonfriend.zemployeeplus_v08.models.WorkerMdl;
 import com.jonfriend.zemployeeplus_v08.services.DivisionSrv;
 import com.jonfriend.zemployeeplus_v08.services.UserSrv;
@@ -91,11 +92,26 @@ public class WorkerCtl {
             if ( !result.hasErrors() ) {
             	System.out.println("Path: /worker/update");
 
-            	workerMdl.setDivisionMdl(divisionSrv.findById(Long.valueOf(workerMdl.getWorkerDivisionId())));
+            	workerMdl.setDivisionMdl(divisionSrv.findById(Long.valueOf(workerMdl.getWorkerDivisionId()))); // this lines enables updating of workerMdl.divisionMdl
                 
-                workerMdl.setWorkerDivisionName(workerMdl.getDivisionMdl().getDivisionName()); // took this from the getMap... and holy cow it works
-//                System.out.println("workerMdl.getDivisionMdl().getDivisionName(): " + workerMdl.getDivisionMdl().getDivisionName());
-//                System.out.println("workerMdl.getWorkerDivisionName(): " + workerMdl.getWorkerDivisionName()); 
+            	// all of below is me trying to get that id and name of the division sent back to json reply, to no avail
+            	workerMdl.setWorkerDivisionId(workerMdl.getDivisionMdl().getId().intValue());
+            	workerMdl.setWorkerDivisionName(workerMdl.getDivisionMdl().getDivisionName()); // took this from the getMap... and holy cow it works
+                System.out.println("workerMdl.getWorkerDivisionId(): " + workerMdl.getWorkerDivisionId()); 
+                System.out.println("workerMdl.getDivisionMdl().getDivisionName(): " + workerMdl.getDivisionMdl().getDivisionName());
+                System.out.println("workerMdl.getWorkerDivisionName(): " + workerMdl.getWorkerDivisionName());
+                // eh.. oh well
+                
+                // begin: maintain the createdby_id
+//                Long workerMdlID = workerMdl.getId(); 
+//                WorkerMdl workerMdlInDB = workerSrv.retrieve(workerMdlID); 
+//                UserMdl workerCreatorMdl = workerMdlInDB.getUserMdl() ; 
+//                Long workerCreatorMdlId = workerCreatorMdl.getId(); 
+//                workerMdl.setUserMdl(workerCreatorMdl);  
+                // end: maintain the createdby_id
+                
+                // now, refactor above into below... 
+                workerMdl.setUserMdl(workerSrv.retrieve(workerMdl.getId()).getUserMdl() );  
                 
                 return ResponseEntity.status(200).body(this.workerSrv.update(workerMdl));
             }
@@ -124,7 +140,12 @@ public class WorkerCtl {
 
   @GetMapping("/all")
   public ResponseEntity<List<WorkerMdl>> getAll(
+		  
       ) {
+	  
+	  
+	  
+	  
 	  return ResponseEntity.status(200).body(this.workerSrv.all());
   }
 }

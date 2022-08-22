@@ -1,6 +1,8 @@
 import React, { useState, createContext, useEffect } from 'react';
 import userService from '../services/UserService';
-import topicService from '../services/TopicService';
+import workerService from '../services/WorkerService';
+//cross out
+// import topicService from '../services/WorkerService';
 
 const AppContext = createContext();
 
@@ -8,7 +10,7 @@ function AppProvider({ children }) {
 
     /* state items */
     const [ user, setUser ] = useState(undefined);
-    const [ topics, setTopics ] = useState(null);
+    const [ workers, setWorkers ] = useState(null);
 
     // check for current user
 
@@ -26,8 +28,8 @@ function AppProvider({ children }) {
     // load items needed once the user is logged in
     useEffect(() => {
         if ( user )
-            topicService.getMyTopics(user.id)
-                .then( resp => setTopics(resp) )
+            workerService.getMyWorkers(user.id)
+                .then( resp => setWorkers(resp) )
                 .catch( err => console.log(err) )
 
     }, [user])
@@ -44,8 +46,8 @@ function AppProvider({ children }) {
         <AppContext.Provider value= {{ // add any attributes or methods you want to make accessible
             user,
             setUser,
-            topics,
-            setTopics,
+            workers,
+            setWorkers,
             logout
         }}>
             { children }

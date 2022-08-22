@@ -14,7 +14,7 @@ const Login = ( props ) => {
     const navigate = useNavigate();
 
     const login = () => {
-        //below is to disable someone from loging in 
+        
         setUserCheck(true);
 
         userService.login(email, password)

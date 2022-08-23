@@ -1,10 +1,10 @@
 import React, { useState, useContext} from 'react';
 import workerService from '../../services/WorkerService';
 import { AppContext } from '../../store/AppContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const NewWorker = ( props ) => {
-
+    const {id} = useParams();
     const { setUser } = useContext(AppContext);
     const navigate = useNavigate();
     
@@ -25,7 +25,7 @@ const NewWorker = ( props ) => {
         workerService.newWorkers(worker)
             .then( resp => { console.log(resp)
                 setUser(resp.user);
-                navigate("/WorkerList" )
+                navigate(`/` )
             })
             .catch( err => console.log(err) )
             
@@ -35,13 +35,12 @@ const NewWorker = ( props ) => {
         <form onSubmit={newWorkers}>
             <div className='col-12 col-md-6 mb-2'>
                 <h5>First Name: </h5>
-                
                 <input className='form-control' value={worker.firstName}
                 onChange={(e) => setWorker({...worker, firstName: e.target.value})}
                 />
             </div>
             <div className='col-12 col-md-6 mb-2'>
-                <h5>last name:</h5>
+                <h5>Last name:</h5>
                 <input className='form-control' value={worker.lastName}
                     onChange={(e) => setWorker({...worker, lastName: e.target.value})}
                 />

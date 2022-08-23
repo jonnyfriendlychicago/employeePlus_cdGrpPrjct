@@ -10,7 +10,7 @@ const Navigation = ( props ) => {
 
     const onLogout = (e) => {
         e.preventDefault();
-        // if //( window.confirm("Are you sure you want to log out?") ) 
+
             logout()
             navigate("/" )
     }
@@ -35,7 +35,7 @@ const Navigation = ( props ) => {
                             <Link 
                                 className="nav-link" 
                                 to="/Employee/new"
-                                > Workers</Link>
+                                > New Worker</Link>
                         </li>
                         <li class="nav-item">
                             <Link 

@@ -19,6 +19,11 @@ public class WorkerSrv {
 	public List<WorkerMdl> all() {
 		return this.workerRpo.findAll();
 	}
+	// begin new
+	public List<WorkerMdl> allPlus() {
+		return this.workerRpo.findAllWorkerPlus();
+	}
+	// end new
 	
 	public WorkerMdl create(WorkerMdl workerMdl) {
 		

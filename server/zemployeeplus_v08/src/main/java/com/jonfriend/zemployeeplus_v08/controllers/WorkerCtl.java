@@ -143,9 +143,20 @@ public class WorkerCtl {
 		  
       ) {
 	  
+	  return ResponseEntity.status(200).body(this.workerSrv.all());
+  }
+  
+  @GetMapping("/allPlus")
+  public ResponseEntity<List<WorkerMdl>> getAllPlus(
+		  
+      ) {
+//	  List<WorkerMdl> allPlusThing1 = this.workerSrv.allPlus(); 
+	  
 	  
 	  
 	  
 	  return ResponseEntity.status(200).body(this.workerSrv.all());
   }
+  
+  
 }
